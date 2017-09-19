@@ -27,7 +27,7 @@ public class MonsterController
 		System.out.println(currentMonster);
 		
 		System.out.println("How many arms are you interested in eating?, I have " + currentMonster.getArmCount());
-		 consumed = myScanner.nextInt();
+		consumed = myScanner.nextInt();
 		
 		 if(consumed == 0)
 		 {
@@ -48,6 +48,27 @@ public class MonsterController
 			 currentMonster.setArmCount(currentMonster.getArmCount() - consumed);
 			 System.out.println("Ok, now I have this many arms " + currentMonster.getArmCount());
 		 }
+		 
+		 if (currentMonster.hasBloop() == true)
+		 {
+			 System.out.println("I still have a bloop or many bloops left for you to eat, would you like to eat them?(1 = Yes, 0 = No)");
+			 int userResponse = myScanner.nextInt();
+			 
+			 if (userResponse == 0)
+			 {
+				 System.out.println("Aw, they are really tasty :(");
+			 }
+			 else if (userResponse == 1)
+			 {
+				 currentMonster.setBloop(false);
+				 System.out.println("Thank you for eating all my bloops!");
+			 }
+			 else 
+			 {
+				 System.out.println("I wasn't asking that, but that's ok!");
+			 }
+		 }
+		 
 		myScanner.close();
 	}
 }
