@@ -6,7 +6,6 @@ import monster.view.MonsterDisplay;
 
 public class MonsterController
 {
-	
 	private MonsterDisplay popup;
 	
 	public MonsterController()
@@ -16,10 +15,20 @@ public class MonsterController
 	
 	public void start()
 	{
+		int count = 0;
+		while (count < 10)
+		{
+			popup.displayText("Am I not the coolest?")
+			count -=2;
+		}
+		
+		
+		
 		MarshmallowMonster basic = new MarshmallowMonster();
-		System.out.println(basic);
+//		System.out.println(basic);
+		popup.displayText(basic.toString());
 		MarshmallowMonster nelson = new MarshmallowMonster("Nelson", 2, 3, 0, true);
-		System.out.println(nelson);
+//		System.out.println(nelson);
 		System.out.println("I am feeling hungry, I am going to eat one of Nelson's arms");
 		nelson.setArmCount(nelson.getArmCount() - 1);
 		System.out.println(nelson);
