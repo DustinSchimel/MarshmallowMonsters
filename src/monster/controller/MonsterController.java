@@ -15,17 +15,17 @@ public class MonsterController
 	
 	public void start()
 	{
-		int count = 0;
-		while (count < 10)
-		{
-			popup.displayText("Am I not the coolest?")
-			count -=2;
-		}
-		
-		for(int loop = 0; loop < 10; loop += 1)
-		{
-			popup.displayText("This is loop # " + (loop + 1) + " of ten");
-		}
+//		int count = 0;
+//		while (count < 10)
+//		{
+//			popup.displayText("Am I not the coolest?")
+//			count -=2;
+//		}
+//		
+//		for(int loop = 0; loop < 10; loop += 1)
+//		{
+//			popup.displayText("This is loop # " + (loop + 1) + " of ten");
+//		}
 		
 		
 		
@@ -44,9 +44,19 @@ public class MonsterController
 	private void interactWithMonster(MarshmallowMonster currentMonster)
 	{
 		Scanner myScanner = new Scanner(System.in);
-		System.out.println(currentMonster.getName() + " wants to know how many eyes you want to eat, please type in how many");
-		int consumed = myScanner.nextInt();
+		String response = popup.getResponse(currentMonster.getName() + " wants to know how many eyes you want to eat, please type in how many.");
+		
+		while(!isInteger(response))
+		{
+			popup.displayText("Grrr, type in a better answer next time");
+			response = popup.getResponse("Type in a integer value!");
+		}
+		
+		int consumed = Integer.parseInt(response);
 		currentMonster.setEyeCount(currentMonster.getEyeCount() - consumed);
+		
+		popup.displayText("I only have " + currentMonster.getEyeCount() + " arm(s).");
+		
 		System.out.println(currentMonster);
 		
 		System.out.println("How many arms are you interested in eating?, I have " + currentMonster.getArmCount());
@@ -97,5 +107,39 @@ public class MonsterController
 		 System.out.println(answer);
 		 
 		myScanner.close();
+	}
+	
+	private boolean isInteger(String input)
+	{
+		boolean isInt = false;
+		
+		try
+		{
+			Integer.parseInt(input);
+			isInt = true;
+		}
+		catch(NumberFormatException error)
+		{
+			popup.displayText("You did not type in a valid integer");
+		}
+		
+		return isInt;
+	}
+	
+	private boolean isDouble(String input)
+	{
+		boolean isDouble = false;
+		
+		try
+		{
+			Double.parseDouble(input);
+			isDouble = true;
+		}
+		catch(NumberFormatException error)
+		{
+			popup.displayText("You did not type in a valid double");
+		}
+		
+		return isDouble;
 	}
 }
