@@ -27,16 +27,14 @@ public class MonsterController
 //			popup.displayText("This is loop # " + (loop + 1) + " of ten");
 //		}
 		
-		
-		
 		MarshmallowMonster basic = new MarshmallowMonster();
 //		System.out.println(basic);
 		MarshmallowMonster nelson = new MarshmallowMonster("Nelson", 2, 3, 0, true);
 		popup.displayText(nelson.toString());
 //		System.out.println(nelson);
-		System.out.println("I am feeling hungry, I am going to eat one of Nelson's arms");
+		popup.displayText("I'm feeling hungry, I'm going to eat one of Nelson's arms");
 		nelson.setArmCount(nelson.getArmCount() - 1);
-		System.out.println(nelson);
+		popup.displayText(nelson.toString());
 		
 		interactWithMonster(nelson);
 	}
@@ -52,10 +50,25 @@ public class MonsterController
 			response = popup.getResponse("Type in a integer value!");
 		}
 		
-		int consumed = Integer.parseInt(response);
+		int consumed = 0;
+		
+		if(Integer.parseInt(response) > currentMonster.getEyeCount())
+		{
+			popup.displayText("I don't have that many eyes! Just eat all of them if you want that much.");
+			consumed = currentMonster.getEyeCount();
+		}
+		else if (Integer.parseInt(response) < 0)
+		{
+			popup.displayText("You can't eat a negative amount of eyes! Just have none.");
+			consumed = 0;
+		}
+		else
+		{
+			consumed = Integer.parseInt(response);	
+		}
 		currentMonster.setEyeCount(currentMonster.getEyeCount() - consumed);
 		
-		popup.displayText("I only have " + currentMonster.getEyeCount() + " arm(s).");
+		popup.displayText("I have " + currentMonster.getEyeCount() + " eye(s) now.");
 		
 		System.out.println(currentMonster);
 		
