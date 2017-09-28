@@ -76,9 +76,9 @@ public class MarshmallowMonster
 	
 	public String toString()
 	{
-		String description = "I am a silly monster, my name is " + name + ", I have " + eyeCount + " eyes and ";
-		description += tentacleAmount + " tentacles but I have " + armCount + " arms!" + hasBloop + " tells you";
-		description += " if I have a bloop";
+		String description = "I am a silly monster, my name is " + getName() + ", I have " + getEyeCount() + " eyes and ";
+		description += getTentacleAmount() + " tentacles but I have " + getArmCount() + " arms! It's also " + hasBloop();
+		description += " that I have a bloop.";
 		
 		return description;
 	}

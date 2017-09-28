@@ -31,8 +31,8 @@ public class MonsterController
 		
 		MarshmallowMonster basic = new MarshmallowMonster();
 //		System.out.println(basic);
-		popup.displayText(basic.toString());
 		MarshmallowMonster nelson = new MarshmallowMonster("Nelson", 2, 3, 0, true);
+		popup.displayText(nelson.toString());
 //		System.out.println(nelson);
 		System.out.println("I am feeling hungry, I am going to eat one of Nelson's arms");
 		nelson.setArmCount(nelson.getArmCount() - 1);
