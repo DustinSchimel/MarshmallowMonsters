@@ -27,7 +27,7 @@ public class MonsterController
 //			popup.displayText("This is loop # " + (loop + 1) + " of ten");
 //		}
 		
-		MarshmallowMonster basic = new MarshmallowMonster();
+//		MarshmallowMonster basic = new MarshmallowMonster();
 //		System.out.println(basic);
 		MarshmallowMonster nelson = new MarshmallowMonster("Nelson", 2, 3, 0, true);
 		popup.displayText(nelson.toString());
@@ -81,43 +81,52 @@ public class MonsterController
 			response = popup.getResponse("Type in a integer value!");
 		}
 		
+		consumed = 0;
+		
 		if(consumed == 0)
 		{
-			 System.out.println("Not hungry? oh so sad...");
+			 popup.displayText("Not hungry? oh so sad...");
 		}
 		else if(consumed < 0)
 		{
-			 System.out.println("Math is hard for you - it is impossible to eat a negative amount");
+			 popup.displayText("Math is hard for you - it is impossible to eat a negative amount");
 		}
 		 
 		else if (consumed - currentMonster.getArmCount() > 0)
 		{
-			 System.out.println("You are not allowed to eat more than exist on me :/");
+			 popup.displayText("You are not allowed to eat more than exist on me :/");
 		}
 		 
 		else
 		{
 			 currentMonster.setArmCount(currentMonster.getArmCount() - consumed);
-			 System.out.println("Ok, now I have this many arms " + currentMonster.getArmCount());
+			 popup.displayText("Ok, now I have this many arms " + currentMonster.getArmCount());
 		}
 		 
 		if (currentMonster.hasBloop() == true)
 		{
-			System.out.println("I still have a bloop or many bloops left for you to eat, would you like to eat them?(1 = Yes, 0 = No)");
-			int userResponse = myScanner.nextInt();
-			 
-			if (userResponse == 0)
+			response = popup.getResponse("I still have a bloop or many bloops left for you to eat, would you like to eat them?(1 = Yes, 0 = No)");
+			
+			while(!isInteger(response))
 			{
-				 System.out.println("Aw, they are really tasty :(");
+				popup.displayText("Grrr, type in a better answer next time");
+				response = popup.getResponse("Type in either 1 or 0! (1 = Yes, 0 = No)");
 			}
-			else if (userResponse == 1)
+			
+			consumed = 0;
+			 
+			if (Integer.parseInt(response) == 0)
+			{
+				 popup.displayText("Aw, they are really tasty :(");
+			}
+			else if (Integer.parseInt(response) == 1)
 			{
 				 currentMonster.setBloop(false);
-				 System.out.println("Thank you for eating all my bloops!");
+				 popup.displayText("Thank you for eating all my bloops!");
 			}
 			else 
 			{
-				 System.out.println("I wasn't asking that, but that's ok!");
+				 popup.displayText("I wasn't asking that, but that's ok!");
 			}
 		}
 		 
