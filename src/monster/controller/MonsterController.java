@@ -3,14 +3,18 @@ package monster.controller;
 import monster.model.MarshmallowMonster;
 import java.util.Scanner;
 import monster.view.MonsterDisplay;
+import java.util.List;
+import java.util.ArrayList;
 
 public class MonsterController
 {
 	private MonsterDisplay popup;
+	private List<MarshmallowMonster> monsterList;
 	
 	public MonsterController()
 	{
 		popup = new MonsterDisplay();
+		monsterList= new ArrayList<MarshmallowMonster>();
 	}
 	
 	public void start()
@@ -27,7 +31,7 @@ public class MonsterController
 //			popup.displayText("This is loop # " + (loop + 1) + " of ten");
 //		}
 		
-//		MarshmallowMonster basic = new MarshmallowMonster();
+		MarshmallowMonster basic = new MarshmallowMonster();
 //		System.out.println(basic);
 		MarshmallowMonster nelson = new MarshmallowMonster("Nelson", 2, 3, 0, true);
 		popup.displayText(nelson.toString());
@@ -35,6 +39,9 @@ public class MonsterController
 		popup.displayText("I'm feeling hungry, I'm going to eat one of Nelson's arms");
 		nelson.setArmCount(nelson.getArmCount() - 1);
 		popup.displayText(nelson.toString());
+		
+		monsterList.add(basic);
+		monsterList.add(nelson);
 		
 		interactWithMonster(nelson);
 	}
