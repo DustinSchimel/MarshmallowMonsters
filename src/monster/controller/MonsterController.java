@@ -81,11 +81,12 @@ public class MonsterController
 			response = popup.getResponse("Type in a integer value!");
 		}
 		
-		consumed = 0;
+		consumed = Integer.parseInt(response);
 		
 		if(consumed == 0)
 		{
 			 popup.displayText("Not hungry? oh so sad...");
+			 consumed = 0;
 		}
 		else if(consumed < 0)
 		{
