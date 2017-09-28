@@ -70,56 +70,62 @@ public class MonsterController
 		
 		popup.displayText("I have " + currentMonster.getEyeCount() + " eye(s) now.");
 		
-		System.out.println(currentMonster);
+//		System.out.println(currentMonster);
 		
-		System.out.println("How many arms are you interested in eating?, I have " + currentMonster.getArmCount());
-		consumed = myScanner.nextInt();
+		response = popup.getResponse("How many arms are you interested in eating? I currently have " + currentMonster.getArmCount());
+//		consumed = myScanner.nextInt();
 		
-		 if(consumed == 0)
-		 {
+		while(!isInteger(response))
+		{
+			popup.displayText("Grrr, type in a better answer next time");
+			response = popup.getResponse("Type in a integer value!");
+		}
+		
+		if(consumed == 0)
+		{
 			 System.out.println("Not hungry? oh so sad...");
-		 }
-		 else if(consumed < 0)
-		 {
+		}
+		else if(consumed < 0)
+		{
 			 System.out.println("Math is hard for you - it is impossible to eat a negative amount");
-		 }
+		}
 		 
-		 else if (consumed - currentMonster.getArmCount() > 0)
-		 {
+		else if (consumed - currentMonster.getArmCount() > 0)
+		{
 			 System.out.println("You are not allowed to eat more than exist on me :/");
-		 }
+		}
 		 
-		 else
-		 {
+		else
+		{
 			 currentMonster.setArmCount(currentMonster.getArmCount() - consumed);
 			 System.out.println("Ok, now I have this many arms " + currentMonster.getArmCount());
-		 }
+		}
 		 
-		 if (currentMonster.hasBloop() == true)
-		 {
-			 System.out.println("I still have a bloop or many bloops left for you to eat, would you like to eat them?(1 = Yes, 0 = No)");
-			 int userResponse = myScanner.nextInt();
+		if (currentMonster.hasBloop() == true)
+		{
+			System.out.println("I still have a bloop or many bloops left for you to eat, would you like to eat them?(1 = Yes, 0 = No)");
+			int userResponse = myScanner.nextInt();
 			 
-			 if (userResponse == 0)
-			 {
+			if (userResponse == 0)
+			{
 				 System.out.println("Aw, they are really tasty :(");
-			 }
-			 else if (userResponse == 1)
-			 {
+			}
+			else if (userResponse == 1)
+			{
 				 currentMonster.setBloop(false);
 				 System.out.println("Thank you for eating all my bloops!");
-			 }
-			 else 
-			 {
+			}
+			else 
+			{
 				 System.out.println("I wasn't asking that, but that's ok!");
-			 }
-		 }
+			}
+		}
 		 
-		 popup.displayText("Hi there, ready to play??");
-		 String answer = popup.getResponse("What is the air speed of a coconut laden swallow?");
-		 System.out.println(answer);
+//		popup.displayText("Hi there, ready to play??");
+//		String answer = popup.getResponse("What is the air speed of a coconut laden swallow?");
+//		System.out.println(answer);
 		 
-		myScanner.close();
+	myScanner.close();
 	}
 	
 	private boolean isInteger(String input)
